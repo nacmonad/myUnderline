@@ -1,0 +1,29 @@
+{
+  "name": "my-underline",
+  "version": "1.0.0",
+  "description": "Angular JS directive for d3navpills (nacmonad)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nacmonad/myUnderline.git"
+  },
+  "keywords": [
+    "angular",
+    "d3",
+    "javascript"
+  ],
+  "author": "nacmonad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nacmonad/myUnderline/issues"
+  },
+  "homepage": "https://github.com/nacmonad/myUnderline#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "d3": "^4.2.1"
+  }
+}
