@@ -27,13 +27,13 @@ app.controller('mainCtrl', function($scope, $element, $window) {
 	//binding to window in order to broadcast window events to the myUnderline directive elements
 	//this is neccessary
 	angular.element($window).bind('resize', function(){
+		console.log("bang")
          $scope.$broadcast('resizeElement');
        });
 })
 .directive('myUnderline', function() {
 	return {
 		restrict:'A',
-		controller: 'mainCtrl',
 		scope: 'true',
 		link: function(scope,element) {
 			var el = d3.select(element[0]),  //angular -> d3 
