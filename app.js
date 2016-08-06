@@ -1,22 +1,40 @@
+// console graffiti
+(function(){
+	var lines =[];
+	lines.push("┌─┐┬ ┬┌┐┌┌─┐┌┬┐┬┌─┐┌┐┌┌─┐┬   ┌─┐┌─┐┌─┐┌┬┐┬ ┬┌─┐┌┬┐┬┌─┐┌─┐");
+	lines.push("├┤ │ │││││   │ ││ ││││├─┤│───├─┤├┤ └─┐ │ ├─┤├┤  │ ││  └─┐");
+	lines.push("└  └─┘┘└┘└─┘ ┴ ┴└─┘┘└┘┴ ┴┴─┘ ┴ ┴└─┘└─┘ ┴ ┴ ┴└─┘ ┴ ┴└─┘└─┘");
+	lines.push("http://functional-aesthetics.rhcloud.com ");
+	lines.forEach( function( element, index) {
+		console.log(element);
+	});
+})()
+
+//angular appdefinition not neccessary,
+//but the method where window resize triggers a broadcast
+//needs to be put into your page.  this is en lieu
+//of binding and throwing watch function calls by all
+//individual my-underline elements (goin cray cray on the digest loop)
+
 var app = angular.module('myUnderline', []);
 
 app.controller('mainCtrl', function($scope, $element, $window) {
-	console.log("hello wolrd!");
+	//this is random crap to populate the page for testing
+	//not neccessary
 	$scope.words = ["directive", "angular", "javascript", "node", "array", "pseudorandom"];
 	$scope.welcome = "welcome msg";
 
+	//binding to window in order to broadcast window events to the myUnderline directive elements
+	//this is neccessary
 	angular.element($window).bind('resize', function(){
-         // is outside of angular
-         //scope.$digest();
          $scope.$broadcast('resizeElement');
        });
-
-
-
 })
 .directive('myUnderline', function() {
 	return {
 		restrict:'A',
+		controller: 'mainCtrl',
+		scope: 'true',
 		link: function(scope,element) {
 			var el = d3.select(element[0]),  //angular -> d3 
 			width = element[0].clientWidth,
@@ -30,7 +48,7 @@ app.controller('mainCtrl', function($scope, $element, $window) {
 			var g = svg.append('g');
 
 			var barsOne = g.append('line')
-				.attr('class','barsOne')  // {key1 :value, ....}
+				.attr('class','barsOne')  // why u no json? {key1 :value, ....}
 				.attr('x2', parseInt(width-4)+'px')
 				.attr('stroke-width', '8px')
 				.attr('x1' , '4px')
